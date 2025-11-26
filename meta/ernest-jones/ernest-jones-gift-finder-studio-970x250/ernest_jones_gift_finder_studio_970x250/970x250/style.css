@@ -1,0 +1,528 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; } /* HTML5 display-role reset for older browsers */ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; } body { line-height: 1; } ol, ul { list-style: none; } blockquote, q { quotes: none; } blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; } table { border-collapse: collapse; border-spacing: 0; }
+
+/* Fonts */
+/**
+ * Usage
+ * ----------------------------q
+ * font-family: 'MetricHPE';
+   font-weight: 600;
+   font-style: normal;
+ * ----------------------------
+ */
+* {
+
+cursor: pointer;
+
+}
+
+@font-face {
+  font-family: 'Oxygen';
+  src: url('fonts/Oxygen-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oxygen';
+  src: url('fonts/Oxygen-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+/* Creative */
+.main-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 970px;
+    height: 250px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+}
+/* BG image wrapper. */
+
+.bg_border {
+    position: absolute;
+    border: 5px solid white;
+    box-sizing: border-box;
+    border-style: solid;
+    width: 968px;
+    height: 248px;
+    z-index: 2;
+}
+#bg_container {
+    position: absolute;
+    width: 970px;
+    height: 250px;
+
+}
+.bg {
+    position: absolute;
+    width: 970px;
+    height: auto;
+
+}
+
+img {
+
+pointer-events: none;
+
+}
+
+#carousel-frame {
+opacity: 0;
+visibility: hidden;
+position: absolute;
+top: 0;
+left: 0;
+width: 970px;
+height: 250px;
+
+}
+
+#carousel_bg {
+    position: absolute;
+    width: 970px;
+    height: 250px;
+
+}
+
+
+#logo_container {
+
+  position: absolute;
+  width: 191px;
+  height: 13px;
+  margin: auto;
+  right: 31px;
+  top: 205px;
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.logo {
+
+width: 100%;
+height: auto;
+
+}
+
+#copy_container {
+  position: absolute;
+  width: 445px;
+  height: fit-content;
+  top: 42px;
+  left: 182px;
+  margin: auto;
+  overflow: hidden;
+}
+
+
+
+#copy-1 {
+    position: relative;
+    width: 350px;
+    height: 90px;
+    font-family: 'Oxygen';
+    font-weight:400;
+    font-size: 37px;
+    color: #000;
+    text-align: center;
+    text-shadow: -3px 4px 11px rgba(0,0,0,0.85);
+    line-height: 1;
+    margin-bottom: 14px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-bottom: 14px;
+}
+
+#copy-2 {
+  position: relative;
+  width: 436px;
+  height: 47px;
+  font-family: 'Oxygen';
+  font-weight:bold;
+  font-size: 29px;
+  color: #000;
+  text-align: center;
+  line-height: 1.1;
+}
+
+
+.button-container{
+
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  width: 407px;
+  height: 80px;
+  align-content: center;
+  flex-direction: row;
+  margin: auto;
+  left: 195px;
+  bottom: 7px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.button {
+    width: 114px;
+    height: 37px;
+    min-height: 37px;
+    font-family: 'Oxygen';
+    font-weight:400;
+    font-size: 15px;
+    background-color: #FFFFFF;
+    color: #000000;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    border-radius: 9px;
+    /* padding: 10px; */
+    white-space: pre;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+.button span {
+  width: 105px;
+  height: 37px;
+pointer-events: none;
+}
+
+
+
+/* ***************************** */
+/* CAROUSEL STYLE CONFIG */
+/* ADDED FOR CAROUSEL STYLE */
+
+#nmpiCarousel {
+	position:absolute;
+}
+
+.nmpiArrow {
+	background-color:transparent;
+	position:absolute;
+  z-index: 999;
+}
+
+.nmpiArrow.verticalScroll {
+  width:100%;
+}
+
+.nmpiArrow.horizontalScroll {
+  height:36px;
+}
+
+#nmpiArrowBack.verticalScroll {
+
+  top:0;
+}
+
+#nmpiArrowBack.horizontalScroll {
+  left:0;
+  bottom:0;
+  top:0;
+  margin: auto;
+  cursor: pointer;
+}
+
+#nmpiArrowForward.verticalScroll {
+  bottom:0;
+}
+
+#nmpiArrowForward.horizontalScroll {
+  right:0;
+  bottom:0;
+  top:0;
+  margin: auto;
+  cursor: pointer;
+}
+
+#nmpiArrowBack.verticalScroll img {
+  transform:rotate(90deg);
+}
+
+#nmpiArrowBack.horizontalScroll img {
+  transform:none;
+}
+
+#nmpiArrowForward.verticalScroll img {
+  transform:rotate(-90deg);
+}
+
+#nmpiArrowForward.horizontalScroll img {
+  /* transform:scaleX(-1); */
+    transform:rotate(-180deg);
+}
+
+.nmpiArrowImage {
+	cursor:pointer;
+	height:100%;
+	position:relative;
+	width:100%;
+}
+
+.nmpiArrowImage img {
+	bottom:0;
+	left:0;
+	position:absolute;
+	margin:auto;
+	max-width:100%;
+	max-height:100%;
+	right:0;
+	top:0;
+}
+
+.nmpiArrowImage.verticalScroll img {
+  height:100%;
+  width:auto;
+}
+
+.nmpiArrowImage.horizontalScroll img {
+
+  height:auto;
+  width:100%;
+}
+
+#nmpiSlider {
+
+	overflow:hidden;
+	position:absolute;
+}
+
+#nmpiSlider.verticalScroll {
+
+  width:100%;
+}
+
+#nmpiSlider.horizontalScroll {
+
+  height:100%;
+}
+
+.nmpiProduct {
+	background-color:transparent;
+	cursor:pointer;
+	position:absolute;
+}
+
+.nmpiProductPicture {
+
+	background-color:transparent;
+	position:absolute;
+  transform: translateY(0px);
+  left: 35px;
+  top:0;
+  bottom: 0;
+  margin: auto;
+}
+
+.nmpiProductPicture img {
+
+	left:50%;
+	position:absolute;
+	max-height:100%;
+	max-width:100%;
+	top:50%;
+  transform:translate(-50%,-50%);
+}
+
+.nmpiProductName {
+
+	background-color:transparent;
+  color:#000;
+	position:absolute;
+	overflow:hidden;
+	text-align:center;
+  font-family: 'Oxygen';
+  font-weight:bold;
+  /* font-size: 15px; */
+}
+
+.nmpiProductName span {
+	display:block;
+	max-height:100%;
+	max-width:100%;
+
+}
+
+.nmpiProductPrice {
+
+	background-color:transparent;
+	color:#000;
+	position:absolute;
+	overflow:hidden;
+	text-align:left;
+  font-family: 'open-sans';
+  /* font-size: 15px; */
+}
+
+.nmpiProductPriceSpan.sale {
+  color:#0000006b;
+  text-decoration:line-through;
+  opacity: 0.8;
+}
+
+.nmpiSalePriceSpan {
+  color:red;
+}
+
+.noTransition {
+	transition: none !important;
+  z-index: 0;
+}
+
+/***********/
+/* 970x250 */
+/***********/
+
+#nmpiBanner.size970x250 {
+	height:250px;
+	width:750px;
+}
+
+
+#nmpiCarousel.size970x250 {
+	height:250px;
+  transform:translate(-50%, -50%);
+	width:750px;
+  top: 50%;
+  left: 375px;
+}
+
+.nmpiProductPicture.size970x250 {
+	height:185px;
+	width:185px;
+  pointer-events: none;
+}
+
+.nmpiProductPicture.size970x250 img {
+  pointer-events: none;
+}
+
+.nmpiProductName.size970x250 {
+  font-size: 18px;
+    font-family: 'Oxygen';
+    font-weight: bold;
+    color: #000;
+    width: 134px;
+    height: 57px;
+    top: 35px;
+    text-align: left;
+    pointer-events: none;
+    right: 0px;
+}
+
+.nmpiProductName.size970x250 span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  pointer-events: none;
+  width: 130px;
+  text-overflow: ellipsis;
+  /* Needed to make it work */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  padding-bottom: 3px;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.1;
+}
+
+.nmpiProductPrice.size970x250 {
+  height: 34px;
+  left: 234px;
+  bottom: 118px;
+  width: 122px;
+  font-size: 18px;
+  font-family: 'Oxygen';
+  font-weight:bold;
+  color: #000;
+  text-align: left;
+  pointer-events: none;
+  /* display: inline-block; */
+  
+}
+
+.nmpiProductPrice.size970x250 span {
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+    left: 0;
+    pointer-events: none;
+    /* display: inline-block; */
+ 
+}
+
+
+.nmpiProductButton.size970x250{
+
+  position: absolute;
+    left: 276px;
+    transform: translateX(-50%);
+    bottom: 75px;
+    font-family: 'Oxygen';
+    font-weight:bold;
+    color: #000;
+    font-size: 11px;
+    background-color: #FFFFFF;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    border-radius: 8px;
+    z-index: 999;
+    text-wrap: nowrap;
+
+}
+
+.nmpiProductButton.size970x250 span{
+  margin: auto;
+  left: 0;right:0;top:0;bottom:0;
+  padding: 7px 15px;
+  pointer-events: none;
+}
+
+/* TRANSPARENT ELEMENTS */
+
+#background_exit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 8;
+    cursor: pointer;
+}
+
+#cta_exit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 8;
+    opacity: 0;
+    cursor: pointer;
+}
