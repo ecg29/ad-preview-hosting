@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta data-template-name="300x250">
+    <!-- <meta name="ad.size" content="width=400,height=400"> -->
+    <title>Studio</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Studio Enabler Required -->
+    <script src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
+    <script src="gsap/gsap.min.js"></script>
+
+    <script>
+
+        /*** Initialize variables for creative structure & carousel ***/
+
+        var creativeSize = '300x250'; // Creative size in pixels, in format WWWxHHH
+        var scrollDirection = 'horizontal'; // Direction of carousel scroll - 'vertical' or 'horizontal'
+        var arrowSize = 9; // Size of arrow in pixels (measured from narrowest to widest point)
+        var noProducts = 0; // Total number of products included in carousel
+        var visibleProducts = 1; // Number of products displayed within the banner at any one time
+        var productSeparation = 0; // Space between products in carousel in pixels
+
+        var timers = { // All timers in seconds
+          intro: 2, // Time initial image is displayed for
+          transition: 1, // Transition time from initial image to carousel
+          autoScroll: 2, // Interval between scroll events
+          scrollAnimation: 0.4, // Speed of animation (i.e. time from position n to position n + 1)
+          animationLimit: 5 // Total time limit for automated animation
+        }
+
+      var returnToStart = true; // When the carousel is initially scrolled through, does it need to end at the same position as it started?
+      var liquorSelected = [];
+      var productEligible = [];
+      var content;
+      var isFirst = true;
+      var applyOnce = true;
+      var isOnHover = false;
+      var getProductDataIndex;
+      var elemIndex;
+      var epCount;
+      var isClickable = true;
+      var productBGColor, productColor;
+  </script>
+  <script src="script.js"></script>
+</head>
+    <body>
+
+      <div class="main-wrapper">
+
+        <!-- Background Image -->
+        <div id="bg_container">
+          <img class="bg" src="">
+        </div>
+        <div id="copy_container">
+          <div id="copy-1" class="copy"></div>
+          <div id="copy-2" class="copy"></div>
+        </div>
+  
+  
+        <div id="button-container" class="button-container">
+          <div id="button-1" class="button-1 button" data-get-click="false" data-product-type="For Her"><span>For Her</span></div>
+          <div id="button-2" class="button-2 button" data-get-click="false" data-product-type="For Him"><span>For Him</span></div>
+          <div id="button-3" class="button-3 button" data-get-click="false" data-product-type="For Kids"><span>For Kids</span></div>
+        </div>
+        
+        <div id="carousel-frame">
+  
+          <div id="carousel_bg">
+            <img class="carousel-bg" src="">
+          </div>
+  
+          <div id="nmpiCarousel">
+            <div id="nmpiArrowBack" class="nmpiArrow">
+              <div class="nmpiArrowImage">
+                <img src="images/arrow.svg" />
+              </div>
+            </div>
+            <div id="nmpiArrowForward" class="nmpiArrow">
+              <div class="nmpiArrowImage">
+                <img src="images/arrow.svg" />
+              </div>
+            </div>
+            <div id="nmpiSlider">
+            </div>
+          </div>
+  
+  
+        </div>
+        <div id="logo_container">
+          <img id="logo" class="logo" src="images/ej-logo.svg">
+        </div>
+      </div>
+
+  </body>
+</html>
