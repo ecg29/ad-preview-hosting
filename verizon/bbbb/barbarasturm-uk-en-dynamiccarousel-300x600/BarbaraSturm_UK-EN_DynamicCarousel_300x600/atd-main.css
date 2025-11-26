@@ -1,0 +1,439 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+    border: 0;
+}
+/* HTML5 display-role reset for older browsers */ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+/* Fonts */
+/**
+ * Usage
+ * ----------------------------
+ * font-family: 'Futura Std';
+   font-weight: 600;
+   font-style: normal;
+ * ----------------------------
+ */
+ /* fonts */
+/* */
+
+@font-face {
+    font-family: 'Europa';
+    src: url('fonts/Europa-Light.woff2') format('woff2'),
+        url('fonts/Europa-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Europa';
+    src: url('fonts/Europa-Regular.woff2') format('woff2'),
+        url('fonts/Europa-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Europa';
+    src: url('fonts/Europa-Bold.woff2') format('woff2'),
+        url('fonts/Europa-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+
+/*
+ * ──────────────────────────────────────────────────────── GLOBAL COMPONENTS ─────
+ */
+.main-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 600px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    /* transform: translate(-50%, -50%); */
+}
+/*
+ * ────────────────────────────────────────────────────────────────── FRAME 2 ─────
+ */
+ .frame {
+    top: 0;
+    opacity: 0;
+}
+
+.frame0 div.intro {
+    transform: translateY(271px);
+}
+
+.frame0 div.promo-display {
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+ 
+}
+ 
+.frame-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: #FFFFFF;
+}
+.product-logo {
+    top: 15px;
+}
+.product-logo img, .intro img {
+    width: 157px;
+    height: 40px;
+    object-fit: contain;
+}
+/* Carousel */
+.carousel-wrapper {
+    position: absolute;
+    top: 149px;
+    left: 50%;
+    width: 100%;
+    height: 420px;
+    /* background-color: #FFFFFF; */
+    transform: translateX(-50%);
+}
+.carousel-items {
+    position: relative;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* outline: 1px dashed blue; */
+    transform: translateX(-50%);
+}
+
+.carousel-item > div {
+    pointer-events: none;
+}
+
+.carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* height: 100%; */
+    outline: 2px dashed blue;
+}
+.carousel-image {
+    position: relative;
+    left: 0;
+    margin-top: 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    outline: 1px dashed red;
+}
+
+.carousel-product-info-wrapper {
+    position: absolute;
+    /* display: flex; */
+    height: 123px;
+    width: 50%;
+    left: 135px;
+    top: 15px;
+    flex-direction: column;
+    /* background-color: #ffffff; */
+    /* outline: 1px dashed red; */
+    align-items: center;
+    margin:10px 0px;
+
+}
+.carousel-product-name {
+    position: relative;
+    display: flex;
+    width: 160px;
+    height: 62px;
+    /* outline: 1px dashed red; */
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 4px;
+}
+.carousel-product-name p {
+    display: -webkit-box;
+    overflow: hidden;
+    font-family: 'Europa';
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #000000;
+    text-align: left;
+    padding-bottom:1px;
+    -webkit-box-orient: vertical;
+}
+/* .carousel-product-desc {
+    position: relative;
+    display: flex;
+    width: 128px;
+    outline: 1px dashed red;
+    top: 5px;
+    align-items: center;
+    justify-content: left;
+}
+.carousel-product-desc p {
+    display: -webkit-box;
+    overflow: hidden;
+    
+    font-size: 13px;
+    line-height: 1.2;
+    color: #000000;
+    text-align: left;
+
+    -webkit-box-orient: vertical;
+
+} */
+
+
+.carousel-product-prices {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100px;
+    font-size: 15px;
+    font-family: 'Europa';
+    font-weight: bold;
+    font-size: inherit;
+    gap: 6px;
+    /* outline: 1px dashed orange; */
+}
+.carousel-product-price {
+    display: flex;
+    color: #000000;
+    text-align: center;
+    align-items: left;
+    
+    padding-right: 5px;
+
+}
+.carousel-product-sale-price {
+    /* display: flex; */
+    display: none;
+    font-size: inherit;
+    color: #000000;
+    text-align: left;
+    align-items: left;
+    
+}
+.carousel-product-cta {
+    position: absolute;
+    display: flex;
+    width: 115px;
+    height: 34px;
+    bottom: 38px;
+    box-sizing: border-box;
+    padding: 6px 10px 6px 10px;
+    font-weight: bold;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    color: #FFFFFF;
+    right: 24px;
+    font-size: 14px;
+}
+.carousel-product-hotspot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    color: #FFFFFF;
+    cursor: pointer;
+    background-color: blue;
+    opacity: 0.3;
+}
+
+
+/* onsale */
+.onsale-slash {
+    opacity: .5;
+    text-decoration: line-through;
+}
+
+
+.left-arrow, .right-arrow {
+    position: absolute;
+    z-index: 2;
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    cursor: pointer;
+    transform: translateX(-23px);
+}
+.left-arrow svg {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.right-arrow svg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.left-arrow {
+    position: absolute;
+    /* left: 0; */
+    top:119px;
+    cursor: pointer;
+}
+.right-arrow {
+    position: absolute;
+    /* right: 0; */
+    bottom: -5px;
+    cursor: pointer;
+    transform: translate(-23px, -6px) rotate(-179deg);
+}
+
+.cta {
+    font-family: 'Europa';
+    position: absolute;
+    display: flex;
+    width: 161px;
+    height: 38px;
+    box-sizing: border-box;
+    padding: 6px 10px 6px 10px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    color: #FFFFFF;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: normal;
+    border-radius: 3px;
+}
+
+.shopnow-intro {
+   
+    left: 50%;
+    top: 309px;
+    transform: translateX(-50%);
+   
+}
+
+.shopnow-product {
+    
+    left:50%;
+    top:73px;
+    transform: translateX(-50%);
+    
+}
+
+
+/* TICKER */
+.ticker-wrapper {
+    height: 35px;
+    width: 100%;
+    bottom: 0px;
+    overflow: hidden;
+    left: 0px;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    display: none;
+    visibility: hidden;
+}
+.ticker-bg {
+    bottom:  0px;
+    height: 35px;
+    pointer-events: none;
+    background-color: #212721;
+    display: none;
+    visibility: hidden;
+}
+.ticker {
+  
+    /* width: 300px; */
+    overflow: visible;
+    white-space: nowrap;
+    pointer-events: none;
+    will-change: left;
+    transform: translateZ(0.000001);
+}
+
+
+.ticker-text {
+    position: relative;
+    display: inline-block;
+    margin-left: 0;
+    color: #FFFFFF;
+    /* font-family: Helvetica, sans-serif; */
+    font-family: 'camptonlight';
+    font-size: 16px;
+    padding: 0px 20px;
+}
+.ticker-text:not(:first-child) {
+   /*  margin-left: 20px; Space between ticker text items */
+}
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    padding: 0px 6px;
+    /* background-color: red; */
+    z-index: 3;
+    /* opacity: 0.3; */
+}
+
+.overlay2 {
+cursor: pointer;
+}
+
+.backdrop {
+    width: 100%;
+    height: 100%;
+
+}
+
+
+* {
+    outline: none !important;
+}
