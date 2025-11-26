@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlyerAlarm_Campaign - Google | Campaign Preview</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      color: #fff;
+      padding: 40px 20px;
+    }
+    .container { max-width: 1800px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 40px; }
+    .breadcrumb { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 15px; }
+    .breadcrumb a { color: #00d9ff; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #00d9ff, #00ff88);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    .client-badge {
+      display: inline-block;
+      background: rgba(0,217,255,0.2);
+      color: #00d9ff;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+    .meta { color: rgba(255,255,255,0.6); }
+    
+    /* Locale Tabs */
+    .locale-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .locale-tab {
+      padding: 10px 24px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      font-weight: 500;
+    }
+    .locale-tab:hover {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+    .locale-tab.active {
+      background: linear-gradient(90deg, #00d9ff, #00ff88);
+      color: #1a1a2e;
+      font-weight: 600;
+    }
+    .locale-tab .count {
+      display: inline-block;
+      background: rgba(0,0,0,0.2);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      margin-left: 6px;
+    }
+    
+    /* Size Section */
+    .size-section {
+      margin-bottom: 60px;
+    }
+    .size-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .size-badge {
+      background: linear-gradient(90deg, #00d9ff, #00ff88);
+      color: #1a1a2e;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .size-info { color: rgba(255,255,255,0.5); }
+    
+    /* Creatives Row - Inline Previews */
+    .creatives-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    
+    .creative-frame {
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .creative-frame:hover {
+      border-color: rgba(0,217,255,0.4);
+      box-shadow: 0 10px 40px rgba(0,217,255,0.15);
+    }
+    .creative-frame[data-locale] { display: flex; }
+    .creative-frame.hidden { display: none !important; }
+    
+    .frame-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 15px;
+      gap: 10px;
+    }
+    .locale-badge {
+      background: rgba(0,217,255,0.2);
+      color: #00d9ff;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .creative-name {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.85rem;
+      flex: 1;
+      text-align: right;
+      word-break: break-word;
+    }
+    
+    .preview-container {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+    .preview-container iframe {
+      border: none;
+      display: block;
+    }
+    
+    .frame-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      width: 100%;
+    }
+    .frame-action {
+      flex: 1;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .frame-action.primary {
+      background: linear-gradient(90deg, #00d9ff, #00ff88);
+      color: #1a1a2e;
+    }
+    .frame-action.secondary {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+    .frame-action:hover { opacity: 0.85; transform: translateY(-1px); }
+    
+    /* Stats */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 50px;
+      padding: 30px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-value { font-size: 2rem; font-weight: 700; color: #00d9ff; }
+    .stat-label { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+    
+    /* View Mode Toggle */
+    .view-controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      align-items: center;
+    }
+    .view-label { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+    .scale-slider {
+      width: 150px;
+      accent-color: #00d9ff;
+    }
+    .scale-value { color: #00d9ff; font-weight: 600; min-width: 45px; }
+    
+    @media (max-width: 768px) {
+      .creatives-row { justify-content: center; }
+      .creative-frame { width: 100%; max-width: 400px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="breadcrumb">
+        <a href="../">← Google</a>
+      </div>
+      <span class="client-badge">Google</span>
+      <h1>FlyerAlarm_Campaign</h1>
+      <p class="meta">Campaign Preview Gallery • 7 Creatives • 7 Sizes</p>
+    </header>
+    
+    
+    
+    <div class="view-controls">
+      <span class="view-label">Preview Scale:</span>
+      <input type="range" class="scale-slider" id="scaleSlider" min="25" max="100" value="50">
+      <span class="scale-value" id="scaleValue">50%</span>
+    </div>
+    
+    
+    <section class="size-section">
+      <div class="size-header">
+        <span class="size-badge">994×250</span>
+        <span class="size-info">1 variation</span>
+      </div>
+      <div class="creatives-row">
+        
+          <div class="creative-frame" data-locale="FR">
+            <div class="frame-label">
+              <span class="locale-badge">FR</span>
+              <span class="creative-name">flyeralarm_fa23_new_remarketing_creatives_994x250_fr</span>
+            </div>
+            <div class="preview-container" style="width: 517px; height: 145px;">
+              <iframe 
+                src="flyeralarm-fa23-new-remarketing-creatives-994x250-fr/" 
+                width="994" 
+                height="250"
+                style="transform: scale(0.5); transform-origin: center center;"
+                scrolling="no"
+                loading="lazy"
+                data-original-width="994"
+                data-original-height="250"
+              ></iframe>
+            </div>
+            <div class="frame-actions">
+              <a href="flyeralarm-fa23-new-remarketing-creatives-994x250-fr/" target="_blank" class="frame-action primary">Open Full Size ↗</a>
+              <button class="frame-action secondary" onclick="copyLink('flyeralarm-fa23-new-remarketing-creatives-994x250-fr/')">Copy Link</button>
+            </div>
+          </div>
+      </div>
+    </section>
+    
+    <section class="size-section">
+      <div class="size-header">
+        <span class="size-badge">970×250</span>
+        <span class="size-info">1 variation</span>
+      </div>
+      <div class="creatives-row">
+        
+          <div class="creative-frame" data-locale="FR">
+            <div class="frame-label">
+              <span class="locale-badge">FR</span>
+              <span class="creative-name">flyeralarm_fa23_new_remarketing_creatives_970x250_fr</span>
+            </div>
+            <div class="preview-container" style="width: 505px; height: 145px;">
+              <iframe 
+                src="flyeralarm-fa23-new-remarketing-creatives-970x250-fr/" 
+                width="970" 
+                height="250"
+                style="transform: scale(0.5); transform-origin: center center;"
+                scrolling="no"
+                loading="lazy"
+                data-original-width="970"
+                data-original-height="250"
+              ></iframe>
+            </div>
+            <div class="frame-actions">
+              <a href="flyeralarm-fa23-new-remarketing-creatives-970x250-fr/" target="_blank" class="frame-action primary">Open Full Size ↗</a>
+              <button class="frame-action secondary" onclick="copyLink('flyeralarm-fa23-new-remarketing-creatives-970x250-fr/')">Copy Link</button>
+            </div>
+          </div>
+      </div>
+    </section>
+    
+    <section class="size-section">
+      <div class="size-header">
+        <span class="size-badge">300×600</span>
+        <span class="size-info">1 variation</span>
+      </div>
+      <div class="creatives-row">
+        
+          <div class="creative-frame" data-locale="FR">
+            <div class="frame-label">
+              <span class="locale-badge">FR</span>
+              <span class="creative-name">flyeralarm_fa23_new_remarketing_creatives_300x600_fr</span>
+            </div>
+            <div class="preview-container" style="width: 170px; height: 320px;">
+              <iframe 
+                src="flyeralarm-fa23-new-remarketing-creatives-300x600-fr/" 
+                width="300" 
+                height="600"
+                style="transform: scale(0.5); transform-origin: center center;"
+                scrolling="no"
+                loading="lazy"
+                data-original-width="300"
+                data-original-height="600"
+              ></iframe>
+            </div>
+            <div class="frame-actions">
+              <a href="flyeralarm-fa23-new-remarketing-creatives-300x600-fr/" target="_blank" class="frame-action primary">Open Full Size ↗</a>
+              <button class="frame-action secondary" onclick="copyLink('flyeralarm-fa23-new-remarketing-creatives-300x600-fr/')">Copy Link</button>
+            </div>
+          </div>
+      </div>
+    </section>
+    
+    <section class="size-section">
+      <div class="size-header">
+        <span class="size-badge">160×600</span>
+        <span class="size-info">1 variation</span>
+      </div>
+      <div class="creatives-row">
+        
+          <div class="creative-frame" data-locale="FR">
+            <div class="frame-label">
+              <span class="locale-badge">FR</span>
+              <span class="creative-name">flyeralarm_fa23_new_remarketing_creatives_160x600_fr</span>
+            </div>
+            <div class="preview-container" style="width: 100px; height: 320px;">
+              <iframe 
+                src="flyeralarm-fa23-new-remarketing-creatives-160x600-fr/" 
+                width="160" 
+                height="600"
+                style="transform: scale(0.5); transform-origin: center center;"
+                scrolling="no"
+                loading="lazy"
+                data-original-width="160"
+                data-original-height="600"
+              ></iframe>
+            </div>
+            <div class="frame-actions">
+              <a href="flyeralarm-fa23-new-remarketing-creatives-160x600-fr/" target="_blank" class="frame-action primary">Open Full Size ↗</a>
+              <button class="frame-action secondary" onclick="copyLink('flyeralarm-fa23-new-remarketing-creatives-160x600-fr/')">Copy Link</button>
+            </div>
+          </div>
+      </div>
+    </section>
+    
+    <section class="size-section">
+      <div class="size-header">
+        <span class="size-badge">300×250</span>
+        <span class="size-info">1 variation</span>
+      </div>
+      <div class="creatives-row">
+        
+          <div class="creative-frame" data-locale="FR">
+            <div class="frame-label">
+              <span class="locale-badge">FR</span>
+              <span class="creative-name">flyeralarm_fa23_new_remarketing_creatives_300x250_fr</span>
+            </div>
+            <div class="preview-container" style="width: 170px; height: 145px;">
+              <iframe 
+                src="flyeralarm-fa23-new-remarketing-creatives-300x250-fr/" 
+                width="300" 
+                height="250"
+                style="transform: scale(0.5); transform-origin: center center;"
+                scrolling="no"
+                loading="lazy"
+                data-original-width="300"
+                data-original-height="250"
+              ></iframe>
+            </div>
+            <div class="frame-actions">
+              <a href="flyeralarm-fa23-new-remarketing-creatives-300x250-fr/" target="_blank" class="frame-action primary">Open Full Size ↗</a>
+              <button class="frame-action secondary" onclick="copyLink('flyeralarm-fa23-new-remarketing-creatives-300x250-fr/')">Copy Link</button>
+            </div>
+          </div>
+      </div>
+    </section>
+    
+    <section class="size-section">
+      <div class="size-header">
+        <span class="size-badge">728×90</span>
+        <span class="size-info">1 variation</span>
+      </div>
+      <div class="creatives-row">
+        
+          <div class="creative-frame" data-locale="FR">
+            <div class="frame-label">
+              <span class="locale-badge">FR</span>
+              <span class="creative-name">flyeralarm_fa23_new_remarketing_creatives_728x90_fr</span>
+            </div>
+            <div class="preview-container" style="width: 384px; height: 65px;">
+              <iframe 
+                src="flyeralarm-fa23-new-remarketing-creatives-728x90-fr/" 
+                width="728" 
+                height="90"
+                style="transform: scale(0.5); transform-origin: center center;"
+                scrolling="no"
+                loading="lazy"
+                data-original-width="728"
+                data-original-height="90"
+              ></iframe>
+            </div>
+            <div class="frame-actions">
+              <a href="flyeralarm-fa23-new-remarketing-creatives-728x90-fr/" target="_blank" class="frame-action primary">Open Full Size ↗</a>
+              <button class="frame-action secondary" onclick="copyLink('flyeralarm-fa23-new-remarketing-creatives-728x90-fr/')">Copy Link</button>
+            </div>
+          </div>
+      </div>
+    </section>
+    
+    <section class="size-section">
+      <div class="size-header">
+        <span class="size-badge">320×160</span>
+        <span class="size-info">1 variation</span>
+      </div>
+      <div class="creatives-row">
+        
+          <div class="creative-frame" data-locale="FR">
+            <div class="frame-label">
+              <span class="locale-badge">FR</span>
+              <span class="creative-name">flyeralarm_fa23_new_remarketing_creatives_320x160_fr</span>
+            </div>
+            <div class="preview-container" style="width: 180px; height: 100px;">
+              <iframe 
+                src="flyeralarm-fa23-new-remarketing-creatives-320x160-fr/" 
+                width="320" 
+                height="160"
+                style="transform: scale(0.5); transform-origin: center center;"
+                scrolling="no"
+                loading="lazy"
+                data-original-width="320"
+                data-original-height="160"
+              ></iframe>
+            </div>
+            <div class="frame-actions">
+              <a href="flyeralarm-fa23-new-remarketing-creatives-320x160-fr/" target="_blank" class="frame-action primary">Open Full Size ↗</a>
+              <button class="frame-action secondary" onclick="copyLink('flyeralarm-fa23-new-remarketing-creatives-320x160-fr/')">Copy Link</button>
+            </div>
+          </div>
+      </div>
+    </section>
+    
+    
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">7</div>
+        <div class="stat-label">Total Creatives</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">7</div>
+        <div class="stat-label">Size Variations</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">1</div>
+        <div class="stat-label">Localizations</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">11/27/2025</div>
+        <div class="stat-label">Generated</div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Locale Tab Filtering
+    document.querySelectorAll('.locale-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.locale-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        const filter = tab.dataset.filter;
+        document.querySelectorAll('.creative-frame').forEach(frame => {
+          if (filter === 'all' || frame.dataset.locale === filter) {
+            frame.classList.remove('hidden');
+          } else {
+            frame.classList.add('hidden');
+          }
+        });
+      });
+    });
+    
+    // Scale Slider
+    const slider = document.getElementById('scaleSlider');
+    const scaleValue = document.getElementById('scaleValue');
+    
+    slider.addEventListener('input', () => {
+      const scale = slider.value / 100;
+      scaleValue.textContent = slider.value + '%';
+      
+      document.querySelectorAll('.preview-container iframe').forEach(iframe => {
+        const origW = parseInt(iframe.dataset.originalWidth);
+        const origH = parseInt(iframe.dataset.originalHeight);
+        iframe.style.transform = 'scale(' + scale + ')';
+        iframe.parentElement.style.width = (origW * scale + 20) + 'px';
+        iframe.parentElement.style.height = (origH * scale + 20) + 'px';
+      });
+    });
+    
+    // Copy Link
+    function copyLink(path) {
+      const url = window.location.href.replace(/\/index\.html$/, '/').replace(/\/$/, '') + '/' + path;
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Link copied to clipboard!');
+      });
+    }
+  </script>
+</body>
+</html>
